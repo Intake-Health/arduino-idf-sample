@@ -1,7 +1,8 @@
 name: ESP-IDF Build Check
 
 on: 
-  release
+  release:
+    types: [created]
 
 jobs:
   build:
