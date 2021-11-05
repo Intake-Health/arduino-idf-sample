@@ -15,5 +15,3 @@ jobs:
         submodules: 'recursive'
     - name: esp-idf build
       uses: espressif/esp-idf-ci-action@latest
-      with:
-        path: 'arduino-idf-sample'
