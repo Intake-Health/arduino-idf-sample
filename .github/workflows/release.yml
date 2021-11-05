@@ -1,7 +1,7 @@
 name: ESP-IDF Build Check
 
 on: 
-  commit
+  push
 
 jobs:
   build:
