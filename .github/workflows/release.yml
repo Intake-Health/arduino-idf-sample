@@ -14,4 +14,4 @@ jobs:
       with:
         submodules: 'recursive'
     - name: esp-idf build
-      uses: espressif/esp-idf-ci-action@latest
+      uses: Intake-Health/esp-idf-ci-action@release-v4.4
