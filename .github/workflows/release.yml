@@ -1,7 +1,7 @@
 name: ESP-IDF Build Check
 
 on: 
-  push
+  release
 
 jobs:
   build:
@@ -15,3 +15,18 @@ jobs:
         submodules: 'recursive'
     - name: esp-idf build
       uses: Intake-Health/esp-idf-ci-action@release-v4.4
+    - name: Get release
+      id: get-release
+      uses: bruceadams/get-release@v1.2.3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload firmware.bin as a release asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.get-release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: /github/workspace/build/firmware.bin
+        asset_name: firmware.bin
+        asset_content_type: application/octet-stream
